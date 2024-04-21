@@ -1,0 +1,39 @@
+
+<% include ./partials/header.ejs %>
+<div class="w-full min-h-screen bg-zinc-800 px-10 py-8 text-white">
+    <div class="cards flex flex-wrap gap-10 ">
+        <% user.posts.forEach(function(elem){ %>
+        <div class="w-32">
+            <div class="card w-full h-40 bg-sky-200 rounded-md overflow-hidden">
+                <img class="w-full h-full object-cover" src="/images/uploads/<%=elem.image%>" alt="">
+            </div>
+            <h5 class="mt-2 text-sm"><%=elem.title%></h5>
+        </div>
+       <% }) %>
+    </div>
+</div>
+
+<!-- Zoomed image modal -->
+<div id="zoomedImage" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75 z-50 hidden">
+    <img id="zoomedPhoto" class="max-w-full max-h-full" src="" alt="Zoomed Photo">
+</div>
+
+<script>
+    // Add click event listeners to all images
+    document.querySelectorAll('.card img').forEach(img => {
+        img.addEventListener('click', function() {
+            // Set the src attribute of the zoomed photo to the src of the clicked photo
+            document.getElementById('zoomedPhoto').src = this.src;
+            
+            // Show the zoomed image modal
+            document.getElementById('zoomedImage').classList.remove('hidden');
+        });
+    });
+
+    // Add click event listener to the zoomed image modal to close it
+    document.getElementById('zoomedImage').addEventListener('click', function() {
+        // Hide the zoomed image modal
+        this.classList.add('hidden');
+    });
+</script>
+<% include ./partials/footer.ejs %>
