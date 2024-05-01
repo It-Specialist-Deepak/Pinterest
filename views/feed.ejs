@@ -1,0 +1,43 @@
+<% include ./partials/header.ejs %>
+<div class="w-auto  min-h-screen  bg-zinc-800 px-10 py-8 text-white mt-14">
+    <div class="cards grid grid-cols-5  gap-10 ">
+        <% posts.forEach(function(elem){ %>
+        <div class=" " >
+            <span class="flex flex-row justify-start gap-3 px-2 items-center m-2">
+                <a  href=""><img class="h-6 w-6 items-center object-cover rounded-full" src="/images/uploads/<%=elem.user.profileImage %>" alt=""></a>
+ 
+            <h1 class="text-xxl opacity-500   items-center  "><%=elem.user.username%></h1>
+          </span>
+            <div class="card w-full relative rounded-md overflow-hidden " >
+            <img class="w-full h-full opacity-100 z-0 hover:opacity-60 ease-in-out object-cover rounded-md" src="/images/uploads/<%=elem.image%>" alt="">
+            <h5 class=" text-xxl mt-2 z-10 "><%=elem.title%></h5>
+            </div>
+           
+        
+        </div>
+       <% }) %>
+    </div>
+</div>
+<div id="zoomedImage" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75 z-50 hidden">
+    <img id="zoomedPhoto" class="max-w-full max-h-full" src="" alt="Zoomed Photo">
+</div>
+<a href="/show" class="scroll-px-10 mt-4 py-3 bg-zinc-700 rounded-md text-xs w-16    font-semibold"></a>
+<script>
+    // Add click event listeners to all images
+    document.querySelectorAll('.card img').forEach(img => {
+        img.addEventListener('click', function() {
+            // Set the src attribute of the zoomed photo to the src of the clicked photo
+            document.getElementById('zoomedPhoto').src = this.src;
+            
+            // Show the zoomed image modal
+            document.getElementById('zoomedImage').classList.remove('hidden');
+        });
+    });
+
+    // Add click event listener to the zoomed image modal to close it
+    document.getElementById('zoomedImage').addEventListener('click', function() {
+        // Hide the zoomed image modal
+        this.classList.add('hidden');
+    });
+</script>
+<% include ./partials/footer.ejs %>
