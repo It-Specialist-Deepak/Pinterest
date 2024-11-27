@@ -14,15 +14,14 @@ This is a Pinterest Clone built as a full-stack project using MongoDB, HTML, Tai
 ## Tech Stack
 
 **Frontend**:
-
- - HTML
+ - HTML , 
  - Tailwind CSS ,
- - JavaScript
+ - JavaScript ,
+
 **Backend**:
-
  - Node.js with Express.js
-**Database**:
 
+**Database**:
  - MongoDB
 ## Installation
 Follow these steps to set up the project locally:
